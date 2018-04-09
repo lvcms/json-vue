@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import localForage from 'localforage'
 export default {
   name: 'app',
   created () {
