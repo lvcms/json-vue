@@ -14,6 +14,13 @@
     "vue",
     "builder"
   ],
+  "dependencies": {
+    "axios": "^0.18.0",
+    "font-awesome": "^4.7.0",
+    "localforage": "^1.7.1",
+    "vue": "^2.5.2",
+    "vue-router": "^3.0.1"
+  },
   "author": "bigRcos",
   "license": "MIT",
   "bugs": {
