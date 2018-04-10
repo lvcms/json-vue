@@ -17,6 +17,12 @@ export const get = (key) => {
   })
 }
 
+// get 别名
+export const pull = (key) => {
+  return get(key)
+}
+
+// 设置缓存
 export const set = (key, value, minutes = 0) => {
   return new Promise((resolve, reject) => {
       localForage.setItem(key, {
@@ -29,6 +35,19 @@ export const set = (key, value, minutes = 0) => {
       })
   })
 }
+// set 别名
+export const put = (key, value, minutes = 0) => {
+  return set(key, value, minutes)
+}
+// set 别名
+export const add = (key, value, minutes = 0) => {
+  return set(key, value, minutes)
+}
+// set 数据永久存储
+export const forever = (key, value) => {
+  return set(key, value, 0)
+}
+
 //确认项目是否存在
 export const has = (key) => {
   return new Promise((resolve, reject) => {
@@ -57,6 +76,51 @@ export const rememberForever = async (key, value) => {
     return set(key, value, 0)
   }
 }
+// 移除缓存
+export const remove = (key) => {
+  return new Promise((resolve, reject) => {
+      localForage.removeItem(key).then(() => {
+          resolve()
+      }).catch((err) => {
+          reject(err)
+      })
+  })
+}
+// remove别名
+export const deleter = (key) => {
+  return remove(key)
+}
+// remove别名
+export const forget = (key) => {
+  return remove(key)
+}
+// 清空缓存
+export const flush = async() => {
+  let index = await keys()
+  index.forEach((value) => {
+    return remove(value)
+  });
+}
+
+export const keys = () => {
+  return new Promise((resolve, reject) =>{
+      localForage.keys().then((keys) => {
+          resolve(keys)
+      }).catch((err) => {
+          reject(err)
+      })
+  })
+}
+export const key = () => {
+  return new Promise((resolve, reject) => {
+      localForage.key(keyIndex).then((keyName) => {
+          resolve(keyName)
+      }).catch((err) => {
+          reject(err)
+      })
+  })
+}
+
 
 // 过期时间
 const expiryTime = (minutes) => {
