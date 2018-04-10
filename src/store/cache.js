@@ -15,7 +15,7 @@ export const set = (key, minutes = 0, value) => {
   return new Promise((resolve, reject) => {
       localForage.setItem(key, {
         value: value,
-        minutes: minutes
+        minutes: expiryTime(minutes)
       }).then((value) => {
           resolve(value)
       }).catch((err) => {
@@ -41,6 +41,15 @@ export const remember = async (key,  minutes = 0, value) => {
     return get(key)
   }else{
     return set(key, minutes, value)
+  }
+
+}
+// 过期时间
+const expiryTime = (minutes) => {
+  if (minutes) {
+    return new Date().getTime() + minutes*60*1000
+  }else{
+    return minutes
   }
 
 }
