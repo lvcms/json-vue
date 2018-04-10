@@ -4,11 +4,13 @@ import localForage from 'localforage'
 export const get = (key) => {
   return new Promise((resolve, reject) => {
       localForage.getItem(key).then((value) => {
-          let data = value.data
-          if (value.minutes < new Date().getTime()) {
-            data = false
+        let data = false
+        if (value) {
+          if (value.minutes > new Date().getTime() || value.minutes == 0) {
+            data = value.data
           }
-          resolve(data)
+        }
+        resolve(data)
       }).catch((err) => {
           reject(err)
       })
@@ -21,7 +23,7 @@ export const set = (key, value, minutes = 0) => {
         data: value,
         minutes: expiryTime(minutes)
       }).then((value) => {
-          resolve(value)
+          resolve(value.data)
       }).catch((err) => {
           reject(err)
       })
@@ -34,7 +36,7 @@ export const has = (key) => {
           let has = value? true: false
           resolve(has)
       }).catch((err) => {
-          reject(false)
+          reject(err)
       })
   })
 }
@@ -45,6 +47,14 @@ export const remember = async (key, value, minutes = 0) => {
     return get(key)
   }else{
     return set(key, value, minutes)
+  }
+}
+// 永久存储
+export const rememberForever = async (key, value) => {
+  if (await has(key)) {
+    return get(key)
+  }else{
+    return set(key, value, 0)
   }
 }
 
