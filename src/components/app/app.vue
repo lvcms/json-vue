@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import localForage from 'localforage'
+import Cache from 'lf-cache'
+import Axios from './../../axios'
 export default {
   name: 'app',
   created () {
@@ -26,7 +27,18 @@ export default {
         console.log(error)
       }
       let apiUrl = this.$store.state.apiUrl
-      this.$store.dispatch('getData',{ apiUrl, thenFunction, catchFunction })
+      // Cache.remember(apiUrl).then((value) => {
+      Cache.get(apiUrl).then((value) => {
+        if (value) {
+
+        }else{
+          console.log('没有缓冲');
+        }
+      }).catch((error) => {
+        // console.log('%c 读取缓存失败! ', 'background: #222; color: #bada55')
+        console.log(error);
+      })
+      // this.$store.dispatch('getData',{ apiUrl, thenFunction, catchFunction })
     }
   }
 }
