@@ -4,6 +4,8 @@
 
 <script>
 import localForage from 'localforage'
+import gql from 'graphql-tag'
+
 export default {
   name: 'app',
   created () {
@@ -12,6 +14,20 @@ export default {
   methods: {
     /* [initMainData 通过apiUrl通信获取数据] */
     initMainData () {
+      this.$apollo.query({
+        query: gql`query ($model: String!) {
+          sidebar(model: $model)
+        }`,
+        variables: {
+          model: this.$config.model
+        }
+      }).then((data) => {
+        console.log(data);
+      }).catch((error) => {
+        // Error
+        console.error(error)
+      })
+      console.log('a');
       let thenFunction = data => {
         let mainData = data.main
         /* 设置主通信数据 */
@@ -26,7 +42,7 @@ export default {
         console.log(error)
       }
       let apiUrl = this.$store.state.apiUrl
-      this.$store.dispatch('getData',{ apiUrl, thenFunction, catchFunction })
+      // this.$store.dispatch('getData',{ apiUrl, thenFunction, catchFunction })
     }
   }
 }

@@ -26,6 +26,7 @@ const apolloProvider = new VueApollo({
 Vue.use(VueApollo)
 
 Vue.config.productionTip = false
+Vue.prototype.$config = window.config
 
 export default {
   start (){
