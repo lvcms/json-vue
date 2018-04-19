@@ -3,46 +3,40 @@
 </template>
 
 <script>
-import localForage from 'localforage'
+import Cache from 'lf-cache'
 import gql from 'graphql-tag'
 
 export default {
   name: 'app',
+  data () {
+    return {
+      model: this.$config.model
+    }
+  },
   created () {
-    this.initMainData()
+    this.initVueRoute()
   },
   methods: {
-    /* [initMainData 通过apiUrl通信获取数据] */
-    initMainData () {
-      this.$apollo.query({
-        query: gql`query ($model: String!) {
-          sidebar(model: $model)
-        }`,
-        variables: {
-          model: this.$config.model
-        }
-      }).then((data) => {
-        console.log(data);
-      }).catch((error) => {
-        // Error
-        console.error(error)
-      })
-      console.log('a');
-      let thenFunction = data => {
-        let mainData = data.main
-        /* 设置主通信数据 */
-        this.$store.dispatch('setMainData',mainData)
-        /* 初始化路由 */
-        this.$router.addRoutes(mainData.routes)
+    /* [initVueRoute 获取路由配置参数] */
+    async initVueRoute () {
+      if (!await Cache.has(this.model + 'vueRoute')){
+       let apollo = await this.$apollo.query({
+              query: gql`query ($model: String!) {
+                vueRouter(model: $model){
+                  path
+                  name
+                  component
+                  children
+                }
+              }`,
+              variables: {
+                model: this.model
+              }
+            })
+        await Cache.put(this.model + 'vueRoute', apollo.data.vueRouter, 1)
       }
-      let catchFunction = function(error) {
-        console.log('%c 获取主配置信息失败! ', 'background: #222; color: #bada55')
-        console.log('%c 请检查模板文件window.config.apiUrl配置参数是否正确,或者服务端是否通信正常。 ', 'background: #222; color: #bada55')
-        console.log('%c 服务端返回状态如下： ', 'background: #222; color: #bada55')
-        console.log(error)
-      }
-      let apiUrl = this.$store.state.apiUrl
-      // this.$store.dispatch('getData',{ apiUrl, thenFunction, catchFunction })
+      let vueRoute = await Cache.get(this.model + 'vueRoute')
+      this.$router.addRoutes(vueRoute)
     }
   }
 }
