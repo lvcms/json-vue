@@ -17,7 +17,9 @@ export default {
     this.initVueRoute()
   },
   methods: {
-    /* [initVueRoute 获取路由配置参数] */
+    /* 【initVueRoute 获取路由配置参数]
+     *  缓存 7 天
+    */
     async initVueRoute () {
       let vueRoute = await Cache.remember(this.model + 'vueRoute', async () => {
         let apollo = await this.$apollo.query({
@@ -34,7 +36,7 @@ export default {
                 }
               })
         return apollo.data.vueRouter
-      } ,1)
+      } , 60*24*7)
 
       this.$router.addRoutes(vueRoute)
     }
