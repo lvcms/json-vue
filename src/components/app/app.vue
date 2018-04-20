@@ -39,7 +39,7 @@ export default {
         return apollo.data.vueRouter
       } , 60*24*7).then((data) => {
         //更改 preventExtensions
-        let vueRoute = JSON.parse(JSON.stringify(vueRoute))
+        let vueRoute = JSON.parse(JSON.stringify(data))
         this.$router.addRoutes(vueRoute)
       })
     }
