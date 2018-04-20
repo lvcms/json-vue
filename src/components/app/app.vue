@@ -19,23 +19,23 @@ export default {
   methods: {
     /* [initVueRoute 获取路由配置参数] */
     async initVueRoute () {
-      if (!await Cache.has(this.model + 'vueRoute')){
-       let apollo = await this.$apollo.query({
-              query: gql`query ($model: String!) {
-                vueRouter(model: $model){
-                  path
-                  name
-                  component
-                  children
+      let vueRoute = await Cache.remember(this.model + 'vueRoute', async () => {
+        let apollo = await this.$apollo.query({
+                query: gql`query ($model: String!) {
+                  vueRouter(model: $model){
+                    path
+                    name
+                    component
+                    children
+                  }
+                }`,
+                variables: {
+                  model: this.model
                 }
-              }`,
-              variables: {
-                model: this.model
-              }
-            })
-        await Cache.put(this.model + 'vueRoute', apollo.data.vueRouter, 1)
-      }
-      let vueRoute = await Cache.get(this.model + 'vueRoute')
+              })
+        return apollo.data.vueRouter
+      } ,1)
+
       this.$router.addRoutes(vueRoute)
     }
   }
