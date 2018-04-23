@@ -9,11 +9,6 @@ import _ from 'lodash'
 
 export default {
   name: 'app',
-  data () {
-    return {
-      model: this.$config.model
-    }
-  },
   created () {
     this.initVueRoute()
   },
@@ -22,7 +17,7 @@ export default {
      *  缓存 7 天
     */
     initVueRoute () {
-      Cache.remember(this.model + 'vueRoute', async () => {
+      Cache.remember(this.$config.model + ':vueRoute', async () => {
         let apollo = await this.$apollo.query({
           query: gql`query ($model: String!) {
             vueRouter(model: $model){
@@ -33,7 +28,7 @@ export default {
             }
           }`,
           variables: {
-            model: this.model
+            model: this.$config.model
           }
         })
         return apollo.data.vueRouter
