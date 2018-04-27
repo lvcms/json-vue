@@ -7,8 +7,6 @@ import * as getters from './getters'
 Vue.use(Vuex)
 
 const state = {
-  /* 设置api通信url */
-  apiUrl: window.config.apiUrl
 }
 export default new Vuex.Store({
   state,

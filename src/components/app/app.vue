@@ -17,10 +17,10 @@ export default {
      *  缓存 7 天
     */
     initVueRoute () {
-      Cache.remember(this.$config.model + ':vueRoute', async () => {
+      Cache.remember(this.$config.package + ':vueRoute', async () => {
         let apollo = await this.$apollo.query({
-          query: gql`query ($model: String!) {
-            vueRouter(model: $model){
+          query: gql`query ($package: String!) {
+            vueRouter(package: $package){
               path
               name
               component
@@ -28,7 +28,7 @@ export default {
             }
           }`,
           variables: {
-            model: this.$config.model
+            package: this.$config.package
           }
         })
         return apollo.data.vueRouter
