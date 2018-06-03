@@ -7,14 +7,24 @@ import 'font-awesome/css/font-awesome.css'
 import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
+import { setContext } from 'apollo-link-context'
 import VueApollo from 'vue-apollo'
 
 const httpLink = new HttpLink({
   uri: window.config.graphql,
 })
 
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('system:token')
+  return {
+    headers: {
+      authorization: token ? `Bearer ${token}` : null
+    }
+  }
+})
 const apolloClient = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
   connectToDevTools: true,
 })
