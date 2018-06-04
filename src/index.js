@@ -37,6 +37,7 @@ Vue.use(VueApollo)
 
 Vue.config.productionTip = false
 Vue.prototype.$config = window.config
+Vue.prototype.$event = new Vue()
 
 export default {
   start (){
