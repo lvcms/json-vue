@@ -7,7 +7,7 @@ import * as getters from './getters'
 Vue.use(Vuex)
 
 const state = {
-  callbackData: null
+
 }
 export default new Vuex.Store({
   state,
