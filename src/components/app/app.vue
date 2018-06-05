@@ -36,7 +36,7 @@ export default {
         //更改 preventExtensions
         let vueRoute = JSON.parse(JSON.stringify(data))
         this.$router.addRoutes(vueRoute)
-        this.$event.$emit('vue-route-catch', vueRoute);
+        this.$event.$emit('vue-route-then', vueRoute);
       }).catch((error) => {
         this.$event.$emit('vue-route-catch', error);
       })
