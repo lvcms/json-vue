@@ -14,7 +14,6 @@ const httpLink = new HttpLink({
   uri: window.config.graphql,
 })
 
-
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('system:token')
   return {
@@ -38,6 +37,8 @@ Vue.use(VueApollo)
 Vue.config.productionTip = false
 Vue.prototype.$config = window.config
 Vue.prototype.$event = new Vue()
+
+window.router = router
 
 export default {
   start (){
