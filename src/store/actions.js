@@ -14,7 +14,9 @@ export const graphqlError = ({commit, state, dispatch}, value) => {
 }
 /**
  * 跳转到当前模块登录页面
+ * removeItem 删除 token 防止循环跳转
  */
 export const login = ({commit, state}, _package = window.config.package) => {
+  localStorage.removeItem('system:token')
   window.router.push('/' + _package + '/login')
 }
