@@ -11,7 +11,7 @@ import { setContext } from 'apollo-link-context'
 import VueApollo from 'vue-apollo'
 
 const httpLink = new HttpLink({
-  uri: window.config.graphql,
+  uri: window.config.graphql
 })
 
 const authLink = setContext((_, { headers }) => {
@@ -25,11 +25,11 @@ const authLink = setContext((_, { headers }) => {
 const apolloClient = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-  connectToDevTools: true,
+  connectToDevTools: true
 })
 
 const apolloProvider = new VueApollo({
-  defaultClient: apolloClient,
+  defaultClient: apolloClient
 })
 
 Vue.use(VueApollo)
