@@ -46,7 +46,7 @@ export default {
       el: '#app',
       router,
       store,
-      provide: apolloProvider.provide(),
+      apolloProvider,
       render: h => h(App)
     })
   },
