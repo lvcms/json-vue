@@ -1,6 +1,6 @@
 {
     "name": "json-vue-core",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "自动构建 vue 页面",
     "main": "./src/index.js",
     "scripts": {
@@ -16,8 +16,9 @@
         "apollo-link-http": "~1.5",
         "graphql": "~14.0",
         "graphql-tag": "~2.10",
-        "lf-cache": "~1.0",
-        "lodash": "~4.17"
+        "font-awesome": "~4.7",
+        "lodash": "~4.17",
+        "lf-cache": "~1.0"
     },
     "repository": {
         "type": "git",
