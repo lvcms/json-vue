@@ -1,6 +1,6 @@
 {
   "name": "json-vue-core",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "自动构建 vue 页面",
   "main": "./src/index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lvcms/json-vue.git"
+    "url": "git+https://github.com/lvcms/json-vue-core.git"
   },
   "keywords": [
     "vue",
@@ -24,7 +24,7 @@
   "author": "bigRcos",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lvcms/json-vue/issues"
+    "url": "https://github.com/lvcms/json-vue-core/issues"
   },
-  "homepage": "https://github.com/lvcms/json-vue#readme"
+  "homepage": "https://github.com/lvcms/json-vue-core#readme"
 }
