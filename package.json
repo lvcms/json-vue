@@ -1,6 +1,6 @@
 {
     "name": "json-vue-core",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "自动构建 vue 页面",
     "main": "./src/index.js",
     "scripts": {
