@@ -17,6 +17,7 @@
         "graphql": "~14.0",
         "graphql-tag": "~2.10",
         "font-awesome": "~4.7",
+        "file-icons-js": "~1.0",
         "lodash": "~4.17",
         "lf-cache": "~1.0"
     },
