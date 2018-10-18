@@ -3,6 +3,7 @@ import App from './components/app'
 import router from './router'
 import store from './store'
 import 'font-awesome/css/font-awesome.css'
+import 'file-icons-js/css/style.css'
 
 import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
