@@ -1,6 +1,5 @@
 import Vue from 'vue'
-import initVue from './core/initVue'
-import apolloProvider from './core/initApollo'
+import apolloProvider from './core/apollo'
 import App from './components/app'
 import router from './router'
 import store from './store'
@@ -13,24 +12,8 @@ Vue.prototype.$event = new Vue()
 
 window.router = router
 
-// export default {
-//   start (){
-//     new Vue({
-//       el: '#app',
-//       router,
-//       store,
-//       apolloProvider,
-//       render: h => h(App)
-//     })
-//   },
-//   Vue,
-//   App,
-//   router,
-//   store,
-// }
-
 export default function (options) {
-    initVue({
+    new Vue({
         el: options.el,
         router,
         store,
