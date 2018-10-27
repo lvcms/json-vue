@@ -4,7 +4,11 @@ import * as actions from './actions'
 import * as getters from './getters'
 
 const state = {
-    loginOut: false
+    loginOut: false,
+    vueRoute: false,
+    data:{
+        vueRoute:[]
+    }
 }
 const modules = {
 }

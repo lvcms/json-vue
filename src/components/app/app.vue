@@ -39,7 +39,7 @@ export default {
         //更改 preventExtensions
         let vueRoute = JSON.parse(JSON.stringify(data))
         this.$router.addRoutes(vueRoute)
-        this.$event.$emit('vue-route-then', vueRoute);
+        this.$store.dispatch('vueRoute', vueRoute)
       }).catch((error) => {
         this.graphqlError(error.message).then( message => {
           this.$Message.error(message)

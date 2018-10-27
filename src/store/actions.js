@@ -1,3 +1,5 @@
+import * as types from './mutation-types'
+
 export const graphqlError = ({commit, state, dispatch}, value) => {
   let content = value.replace(/GraphQL error: /, '')
   if (content === 'Unauthenticated') {
@@ -19,4 +21,18 @@ export const graphqlError = ({commit, state, dispatch}, value) => {
 export const login = ({commit, state}, _package = window.config.package) => {
   localStorage.removeItem('system:token')
   window.router.push('/' + _package + '/login')
+}
+
+/**
+ *[vueRoute 路由数据设定]
+ * @param    {[type]}                 mainData       [数据]
+ */
+export const vueRoute = ({
+    commit,
+    state
+}, data ) => {
+    commit(types.SET_VUE_ROUTE, {
+        vueRoute:!state.vueRoute,
+        data
+    })
 }
