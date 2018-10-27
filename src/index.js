@@ -6,7 +6,7 @@ function JsonVue(options) {
     if (process.env.NODE_ENV !== 'production' &&
         !(this instanceof JsonVue)
     ) {
-        warn('JsonVue is a constructor and should be called with the `new` keyword')
+        console.error('JsonVue is a constructor and should be called with the `new` keyword')
     }
     this._init(options)
 }
