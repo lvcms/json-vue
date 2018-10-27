@@ -1,16 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+
 import mutations from './mutations'
 import * as actions from './actions'
 import * as getters from './getters'
 
-Vue.use(Vuex)
-
 const state = {
+    loginOut: false
 }
-export default new Vuex.Store({
-  state,
-  getters,
-  mutations,
-  actions
-})
+const modules = {
+}
+export default {
+    state,
+    getters,
+    mutations,
+    actions,
+    modules
+}

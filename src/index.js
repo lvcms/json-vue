@@ -1,23 +1,14 @@
-import Vue from 'vue'
-import apolloProvider from './core/apollo'
-import App from './components/app'
-import router from './router'
-import store from './store'
+import {initGlobalAPI} from './global-api'
 import 'font-awesome/css/font-awesome.css'
 import 'file-icons-js/css/style.css'
 
-Vue.config.productionTip = false
-Vue.prototype.$config = window.config
-Vue.prototype.$event = new Vue()
-
-window.router = router
-
-export default function (options) {
-    new Vue({
-        el: options.el,
-        router,
-        store,
-        apolloProvider,
-        render: h => h(App)
-    })
+function JsonVue(options) {
+    if (process.env.NODE_ENV !== 'production' &&
+        !(this instanceof JsonVue)
+    ) {
+        warn('JsonVue is a constructor and should be called with the `new` keyword')
+    }
+    this._init(options)
 }
+initGlobalAPI(JsonVue)
+export default JsonVue
