@@ -5,10 +5,8 @@ import * as getters from './getters'
 
 const state = {
     loginOut: false,
-    vueRoute: false,
-    data:{
-        vueRoute:[]
-    }
+    vueRoute: [],
+    formSubmit:{}, // form 提交 数据监听
 }
 const modules = {
 }

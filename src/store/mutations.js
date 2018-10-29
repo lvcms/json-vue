@@ -1,8 +1,12 @@
 import * as types from './mutation-types'
 export default {
-    [types.SET_VUE_ROUTE](state, {vueRoute, data}) {
+    [types.SET_VUE_ROUTE](state, {vueRoute}) {
         state.vueRoute = vueRoute
-        state.data.vueRoute = data
+    },
+    [types.SET_ROOT_FORM_SUBMIT](state, {
+        result
+    }) {
+        state.formSubmit = result
     },
 }
 

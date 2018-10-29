@@ -14,7 +14,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'graphqlError',
+        'eventVueRoute',
+        'graphqlError',
     ]),
     /* 【initVueRoute 获取路由配置参数]
      *  缓存 7 天
@@ -39,13 +40,11 @@ export default {
         //更改 preventExtensions
         let vueRoute = JSON.parse(JSON.stringify(data))
         this.$router.addRoutes(vueRoute)
-        this.$store.dispatch('vueRoute', vueRoute)
+        this.eventVueRoute(vueRoute)
       }).catch((error) => {
-        this.graphqlError(error.message).then( message => {
+        this.graphqlError(error).then( message => {
           this.$Message.error(message)
         })
-        console.error(error);
-        this.$event.$emit('vue-route-catch', error);
       })
     }
   }

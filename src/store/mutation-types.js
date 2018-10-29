@@ -1,1 +1,3 @@
 export const SET_VUE_ROUTE = 'SET_VUE_ROUTE'
+export const SET_ROOT_FORM_SUBMIT = 'SET_ROOT_FORM_SUBMIT'
+
